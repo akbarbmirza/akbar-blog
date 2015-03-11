@@ -39,6 +39,18 @@ class Handler(webapp2.RequestHandler):
   def render(self, template, **kw):
     self.write(self.render_str(template, **kw))
 
+class Post(db.Model):
+  # required = True => makes field required
+  # Title Field
+  title = db.StringProperty(required = True)
+  # Body Field (Text because it can be very long)
+  body = db.TextProperty(required = True)
+  # Created Field - Holds date/time when created
+  # auto_now_add = True => value will be set when instance is created
+  created = db.DateTimeProperty(auto_now_add = True)
+  # Post_ID Field (Number) holds key/id for each post
+  # post_id = db.IntegerProperty()
+    
 class MainPage(Handler):
     def get(self):
         self.write('Hello world!')
