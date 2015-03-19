@@ -52,6 +52,14 @@ class Post(db.Model):
   # post_id = db.IntegerProperty()
     
 class MainPage(Handler):
+    def render_front(self, title="", body="", error=""):
+      """ Function to Render Front Page """
+      # Modify Query to only render 10 posts
+      posts = db.GqlQuery("SELECT * FROM Post "
+                          "ORDER BY created DESC")
+      # render page using template
+      # self.render()
+    
     def get(self):
         self.write('Hello world!')
 
